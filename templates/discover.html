@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Music</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <div style="font-size: 24px; font-weight: bold; color: #1db954;">Spotify Clone</div>
+        <div>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('search') }}">Discover</a>
+            <a href="{{ url_for('upload') }}">Upload</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Discover</h2>
+        
+        <form method="GET" action="{{ url_for('search') }}" style="margin-bottom: 30px;">
+            <input type="text" name="q" placeholder="Search for songs..." required>
+            <button type="submit">Search</button>
+        </form>
+
+        {% if results %}
+            <h3>Results for "{{ request.args.get('q') }}"</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px;">
+                {% for song in results %}
+                    <div class="card" style="display: block; text-align: center;">
+                        {% if song.artworkUrl100 %}
+                            <img src="{{ song.artworkUrl100 }}" alt="{{ song.trackName }}" style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
+                        {% endif %}
+                        <h3>{{ song.trackName }}</h3>
+                        <p>{{ song.artistName }}</p>
+                        <audio controls style="width: 100%; margin-top: 10px;">
+                            <source src="{{ song.previewUrl }}" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Enter a song name to discover music.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

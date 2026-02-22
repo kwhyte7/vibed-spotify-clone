@@ -4,6 +4,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import db, User, Song
 import os
+import requests
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'supersecretkey'
@@ -80,6 +81,21 @@ def logout():
 @app.route('/play/<filename>')
 def play(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+@app.route('/search', methods=['GET'])
+def search():
+    query = request.args.get('q')
+    results = []
+    if query:
+        try:
+            # Using iTunes Search API as a free, no-key required API for music discovery
+            url = f'https://itunes.apple.com/search?term={query}&media=music&limit=10'
+            response = requests.get(url)
+            data = response.json()
+            results = data.get('results', [])
+        except Exception:
+            results = []
+    return render_template('discover.html', results=results)
 
 if __name__ == '__main__':
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
