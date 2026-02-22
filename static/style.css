@@ -1,0 +1,110 @@
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    color: #1db954;
+}
+
+nav {
+    background-color: #000000;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #1db954;
+}
+
+.card {
+    background-color: #181818;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card button {
+    background-color: #1db954;
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.card button:hover {
+    background-color: #1ed760;
+}
+
+form {
+    background-color: #181818;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 400px;
+    margin: 50px auto;
+}
+
+input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    background-color: #333;
+    border: 1px solid #444;
+    color: white;
+    border-radius: 4px;
+}
+
+button[type="submit"] {
+    background-color: #1db954;
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #1ed760;
+}
+
+audio {
+    width: 100%;
+    margin-top: 20px;
+    outline: none;
+}
+
+.alert {
+    color: #ff4d4d;
+    margin-bottom: 10px;
+}
