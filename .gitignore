@@ -1,2 +1,4 @@
 .aider*
 static/uploads/*
+__pycache__/*
+instance/*
